@@ -1,22 +1,74 @@
 <template>
   <div>
+    <div v-if="users">
     <strong>a list of users</strong>
-    <table v-if="users">
-      <tr v-for="user in users">
+    <table>
+      <tr v-for="user in users" v-bind:key="user.id">
         <td>{{user.id}}</td>
         <td><router-link :to = "{ name: 'user-detail', params: {user_id: user.id}} ">{{user.name}}</router-link></td>  
-        <td><router-link :to="{path:'users', params: {user_id: user.id}}">{{user.name}}</router-link></td>  
+        <td><div @click="showFriends(user.id)">show friends</div></td>
+        <td>{{friendCount(user.id)}}</td>
       </tr>
     </table>
+
+    <div v-if="showFriendsDiv">
+      <strong>Friends {{currentFriends.length}}</strong>
+      <table>
+        <tr v-for="friend in currentFriends" v-bind:key="friend.id">
+          <td>{{friend.id}}</td>
+          <td>{{friend.name}}</td>
+        </tr>   
+      </table> 
+    </div>
+
+    <select v-model="selectedUser">
+      <option v-for="user in users" v-bind:key="user.id" :value="user.id">{{user.name}}</option>
+    </select>
+    selectedUser: {{selectedUser}}
+    </div>
+    <div v-else>
+        loading!!!
+    </div>
   </div>
 </template>
 <script>
 export default {
+  data(){
+    return {
+      selectedUser: null,
+      showFriendsDiv: false,
+      currentFriends: null
+    }
+  },
   computed: {
     users() {
       return this.$store.state.users;
+    },
+    friends() {
+      return this.$store.state.friends;
     }
   }, 
+  methods:{
+    friendCount(user_id){
+      let friend_obj = this.friends.find(user =>  user.user_id == user_id)
+      if(friend_obj){
+       return friend_obj.friend_ids.length
+      }else{
+        return 0;
+      }
+    },
+    showFriends(user_id){
+      this.showFriendsDiv = true;
+      let friend_obj = this.friends.find(user =>  user.user_id == user_id)
+      if(friend_obj){
+        console.log(friend_obj.friend_ids)
+        this.currentFriends = this.users.filter(user =>  friend_obj.friend_ids.includes(user.id));
+        console.log(this.currentFriends);
+      }else{
+        this.currentFriends = []; 
+      }
+    }
+  },
   created(){
     this.$store.dispatch('LOAD_USERS').then(() => {
        console.log("this promise loaded and returned")

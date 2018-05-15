@@ -6,7 +6,6 @@
         <button @click="saveUser">save to store</button>
       </div>
       <strong>user id:</strong>  {{user.id}} <br />
-      <strong>user name 1:</strong>  <span @click.prevent="showModal = true">{{user.name}}</span><br />
       <strong>user name 2:</strong>  <span @click.prevent="showEdit">{{user.name}}</span>
 
   </div>

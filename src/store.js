@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({ 
   state:{
-    users: null
+    users: null,
+    friends: null
   },
   mutations:{
     SET_USER: (state, {userObj}) => {
@@ -25,6 +26,9 @@ export const store = new Vuex.Store({
     SET_USERS: (state, { users }) => {
       state.users = users; // eslint-disable-line no-param-reassign
     },
+    SET_FRIENDS: (state, { friends }) => {
+        state.friends = friends; // eslint-disable-line no-param-reassign
+    },
   },
   actions:{
 
@@ -35,10 +39,11 @@ export const store = new Vuex.Store({
     },  
     LOAD_USERS({ commit }, payload ) {
       return new Promise((resolve, reject) => {
-        axios.get(`http://api.jsonbin.io/b/5af9add30fb4d74cdf23dcb7`, { dataType: 'json' })
+        axios.get(`https://api.jsonbin.io/b/5afb0c67c83f6d4cc7349601`, { dataType: 'json' })
           .then((response) => {
             console.log(response.data)
             commit('SET_USERS', { users: response.data.users });
+            commit('SET_FRIENDS', { friends: response.data.friends });
             resolve();
           })
           .catch((error) => {
