@@ -1,12 +1,14 @@
 <template>
   <div>
-      <div v-if="showModal">
+      <div class='modal-user' v-if="showModal">
         here is modal:<br />
         user name: <input type='text' v-model="tmpUserName" :placeholder="tmpUserName" />
         <button @click="saveUser">save to store</button>
       </div>
-      <strong>user id:</strong>  {{user.id}} <br />
-      <strong>user name 2:</strong>  <span @click.prevent="showEdit">{{user.name}}</span>
+      <table>
+        <tr><td><strong>user id:</strong></td><td>{{user.id}}</td></tr>
+        <tr><td><strong>user name 2:</strong></td><td><span @click.prevent="showEdit">{{user.name}}</span></td></tr>
+      </table>
 
   </div>
 </template>
@@ -41,4 +43,10 @@ export default {
 }
 </script>
 <style>
+.modal-user{
+    width: 200px;
+    border: 1px solid blue;
+    margin: 10px 10px 10px 10px;
+    padding: 20px 20px 20px 20px;
+}
 </style>
