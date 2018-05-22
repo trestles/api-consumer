@@ -24,7 +24,15 @@
     <select v-model="selectedUser">
       <option v-for="user in users" v-bind:key="user.id" :value="user.id">{{user.name}}</option>
     </select>
-    selectedUser: {{selectedUser}}
+    <span v-if="selectedUser">
+      selectedUser: {{selectedUser}}
+      <select v-model="selectedSecondaryUser">
+        <option v-for="friend in currentFriends" v-bind:key="friend.id" :value="friend.id">{{friend.name}}</option>
+      </select>
+      <span v-if="selectedSecondaryUser">
+        selectedUser: {{selectedSecondaryUser}}
+      </span>
+    </span>
     </div>
     <div v-else>
         loading!!!
@@ -36,8 +44,10 @@ export default {
   data(){
     return {
       selectedUser: null,
+      selectedSecondaryUser: null,
       showFriendsDiv: false,
-      currentFriends: null
+      currentFriends: null,
+      currentSecondaryFriends: null
     }
   },
   computed: {
@@ -46,7 +56,7 @@ export default {
     },
     friends() {
       return this.$store.state.friends;
-    }
+    } 
   }, 
   methods:{
     friendCount(user_id){
@@ -55,6 +65,14 @@ export default {
        return friend_obj.friend_ids.length
       }else{
         return 0;
+      }
+    },
+    getFriends(user_id){
+      let friend_obj = this.friends.find(user =>  user.user_id == user_id)
+      if(friend_obj){
+        this.currentFriends = this.users.filter(user =>  friend_obj.friend_ids.includes(user.id));
+      }else{
+        this.currentFriends = []; 
       }
     },
     showFriends(user_id){

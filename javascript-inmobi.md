@@ -19,7 +19,8 @@
  
 ### Vue example 
 - characterize: a mature, reactive framework with a lot of support (SO questions answered quickly, OReilly and Manning books). 
-- A quick tour of features
+- rather than focus on the dom and looking for changes there, reactive frameworks look at the `data` and re-render when that changes. 
+- A quick tour of main features
   - Data Reactivity
     - reactivity
       - Virtual DOM - used by React and Ember 
@@ -29,6 +30,8 @@
       - getter / setter conversion occurs during instance initalization
     - two-way data binding = v-model example
   - components
+    - think of them as functions (what they are) 
+    - 
   - vuex for state management
   - vue-router
 
@@ -39,7 +42,8 @@ package.json
 vue inspect
 access via $vm in the console
 
-
+integration - can kinda play well with jQuery
+Rails - webpacker has first class support for webpack
 
 
 
@@ -52,11 +56,12 @@ access via $vm in the console
 
 - Pragmatic Considerations and Assumptions
    - Development
+   - I think once the patterns are set-up, Vue is fairly easy to learn.
+     - A lot less code (including less interrogating the server) and the spaghetti-like nature of jQuery goes away. 
    - writing the "wrong app" is the biggest problem in software development
       - as more interactivity / conditional rendering is introduced, accurate, well thought-out specs become more important
       - if you need to see it to determine if it's right, that's a problem
   - Business / Product 
-      - People see the product
   - This is a big decision but React and Vue are similar
  
  
