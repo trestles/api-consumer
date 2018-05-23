@@ -7,7 +7,7 @@
 - code tends to stay more local
 
 - a brief history of my JS experience
-   - JS -> -> jQuery ->  Dojo (briefly) -> jQuery again -> Emberjs / Angular (very briefly) / Knockout ->  jQuery + Handlebars (4 years) -> Vue.j s
+   - JS -> -> jQuery ->  Dojo (briefly) -> jQuery again -> Emberjs / Angular (very briefly) / Knockout ->  jQuery + Handlebars (4 years) -> Vue.js
    - While I've been a full-stack engineer, I have to had to write a LOT of admin interfaces. 
    - The key qualities are predictability / stability,  developer efficiency in regards to code (in Vue, code can be either local or shared, very little event handlers), developer efficiency for tooling (vue-devtools, testing, webpack, linting, babel!!!) and devloper efficiency in regards to library ecosystem. I want a Toyota Camry not a Ferrari. 
    - writing front-ends is extremely time-consuming
@@ -19,19 +19,24 @@
  
 ### Vue example 
 - characterize: a mature, reactive framework with a lot of support (SO questions answered quickly, OReilly and Manning books). 
-- rather than focus on the dom and looking for changes there, reactive frameworks look at the `data` and re-render when that changes. 
+- Best Feature:
+  - scalable productivity
+- rather than focus on the dom and looking for changes there, reactive frameworks look at the `data` and re-render when that changes. The most productive style is to have a payload in the mounted lifecyle hook. 
+  Tend to have larger JSON payloads and the shape matters.
 - A quick tour of main features
   - Data Reactivity
+    - Observer Pattern
+    - https://github.com/vuejs/vue/blob/7a145d86430bad65271f4d6ab1344b215fefe52a/src/core/observer/index.js#L63 
+    - https://github.com/vuejs/vue/blob/7a145d86430bad65271f4d6ab1344b215fefe52a/src/core/observer/index.js#L73
     - reactivity
-      - Virtual DOM - used by React and Ember 
-         - uses .sync to update
-         - advantage is that rather than writing 1000 updates to the DOM, you can batch your updates to the Virtual DOM and then do a single update
+      - Virtual DOM - also used by React and Ember 
+      - uses .sync to update
+      - advantage is that rather than writing 1000 updates to the DOM, you can batch your updates to the Virtual DOM and then do a single update
       - data - for it to be reactive, it should be declared here!
-      - getter / setter conversion occurs during instance initalization
+        - getter / setter conversion occurs during instance initalization
     - two-way data binding = v-model example
   - components
     - think of them as functions (what they are) 
-    - 
   - vuex for state management
   - vue-router
 
@@ -45,6 +50,14 @@ access via $vm in the console
 integration - can kinda play well with jQuery
 Rails - webpacker has first class support for webpack
 
+
+Source Code:
+in typescript
+src/core/observer/dep.js
+src/core/observer/watcher.js
+src/core/observer/traverse.js
+src/core/observer/array.js
+src/core/instance/lifecycle.js
 
 
 

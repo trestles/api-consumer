@@ -39,7 +39,7 @@ export const store = new Vuex.Store({
     },  
     LOAD_USERS({ commit }, payload ) {
       return new Promise((resolve, reject) => {
-        axios.get(`https://api.jsonbin.io/b/5afb0c67c83f6d4cc7349601`, { dataType: 'json' })
+        axios.get('https://api.jsonbin.io/b/5b04bc9f7a973f4ce57844a4/1', { dataType: 'json' })
           .then((response) => {
             console.log(response.data)
             commit('SET_USERS', { users: response.data.users });
