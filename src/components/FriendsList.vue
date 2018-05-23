@@ -12,7 +12,7 @@
       <tr v-for="friend in currentFriends" v-bind:key="friend.id">
         <td>{{friend.id}}</td>
         <td>{{friend.name}}</td>
-        <td><button @click="$emit('removeAsFriend', friend.id)">remove as friend</button></td>
+        <td><button class='btn btn-outline-secondary' @click="$emit('removeAsFriend', friend.id)">remove as friend</button></td>
       </tr>   
     </table> 
   </div>

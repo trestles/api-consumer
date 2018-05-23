@@ -3,7 +3,7 @@
     <div v-if="message" class="col-md-12">
       {{message}} 
       <br />
-      <input type='text' v-model.lazy="message" size='40' /><br />
+      <input type='text' v-model="message" size='40' /><br />
       <br /><input size='40' type='text' :placeholder="message" v-model="tmpMessage" /><button v-on:click="saveMessage">save</button>
       <br /><br />
     </div>
@@ -145,7 +145,8 @@ export default {
         this.message = response.data.message;
       })
       .catch((error) => {
-        reject(error);
+        // reject(error);
+        console.log(error);
     });
   }
 }

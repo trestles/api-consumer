@@ -14,10 +14,9 @@ Vue.use(VueRouter)
 
 Vue.config.productionTip = false
 
-// const Foo = { template: '<div>foo I am here</div>' }
-const Bar = { template: '<div>bar</div>' }
 import UserList from './components/UserList'
 import UserDetail from './components/UserDetail'
+import Bar from './components/Bar'
 
 const routes = [
   { path: '/users', component: UserList },
